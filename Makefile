@@ -351,7 +351,7 @@ build-default-gpu-no-tf: build-gpu-cuda-113-no-tf
 		--build-arg TORCH_TB_PROFILER_PIP="$(TORCH_TB_PROFILER_PIP)" \
 		--build-arg TORCH_CUDA_ARCH_LIST="3.7;6.0;6.1;6.2;7.0;7.5;8.0" \
 		--build-arg APEX_GIT="https://github.com/determined-ai/apex.git@3caf0f40c92e92b40051d3afff8568a24b8be28d" \
-		--build-arg HOROVOD_PIP="horovod==0.24.2" \
+		--build-arg HOROVOD_PIP="horovod[pytorch]==0.24.2" \
 		--build-arg DET_BUILD_NCCL="" \
 		--build-arg HOROVOD_WITH_MPI="$(HOROVOD_WITH_MPI)" \
 		--build-arg HOROVOD_WITHOUT_MPI="$(HOROVOD_WITHOUT_MPI)" \
