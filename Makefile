@@ -347,7 +347,6 @@ build-default-gpu-no-tf: build-gpu-cuda-113-no-tf
 	docker build -f Dockerfile-default-gpu-tensorboard \
 		--build-arg BASE_IMAGE="$(DOCKERHUB_REGISTRY)/$(GPU_CUDA_113_BASE_NAME)-ad0591c" \
 		--build-arg TORCH_PIP="$(TORCH_PIP_GPU)" \
-		--build-arg TENSORBOARD_PIP="tensorboard" \
 		--build-arg TORCH_TB_PROFILER_PIP="$(TORCH_TB_PROFILER_PIP)" \
 		--build-arg TORCH_CUDA_ARCH_LIST="3.7;6.0;6.1;6.2;7.0;7.5;8.0" \
 		--build-arg APEX_GIT="https://github.com/determined-ai/apex.git@3caf0f40c92e92b40051d3afff8568a24b8be28d" \
