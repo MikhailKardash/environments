@@ -292,7 +292,7 @@ build-tf28-gpu: build-gpu-cuda-112-base
 		-t $(NGC_REGISTRY)/$(GPU_TF28_ENVIRONMENT_NAME)-$(VERSION) \
 		.
 
-TORCH_VERSION := 1.12
+TORCH_VERSION := 2
 TF2_VERSION_SHORT := 2.11
 TF2_VERSION := 2.11.1
 TF2_PIP_CPU := tensorflow-cpu==$(TF2_VERSION)
