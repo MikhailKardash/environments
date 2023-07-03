@@ -172,7 +172,7 @@ build-gpu-cuda-117-base:
 
 export CPU_TF1_ENVIRONMENT_NAME := $(CPU_PREFIX_37)pytorch-1.7-tf-1.15$(CPU_SUFFIX)
 export GPU_TF1_ENVIRONMENT_NAME := $(CUDA_102_PREFIX)pytorch-1.7-tf-1.15$(GPU_SUFFIX)
-export APEX_GIT_URL = https://github.com/determined-ai/apex.git@3caf0f40c92e92b40051d3afff8568a24b8be28d
+export APEX_GIT_URL = https://github.com/determined-ai/apex.git@85e9eddece9d4ac72b48c2407f8162f2173e1bf4
 
 # Full images.
 .PHONY: build-tf1-cpu
