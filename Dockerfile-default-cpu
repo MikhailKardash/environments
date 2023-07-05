@@ -13,8 +13,7 @@ RUN if [ "$TENSORFLOW_PIP" ]; then \
 		export HOROVOD_WITH_TENSORFLOW=1 && \
         if [ "$TARGETPLATFORM" = "linux/arm64" ]; then \
             TENSORFLOW_AARCH64_PIP=$(printf '%s' "$TENSORFLOW_PIP" | sed 's/cpu/aarch64/') \
-            && pip cache purge \
-            && pip install --no-cache-dir $TENSORFLOW_AARCH64_PIP; \
+            && pip install $TENSORFLOW_AARCH64_PIP; \
         else \
             pip install $TENSORFLOW_PIP; \
         fi; \
