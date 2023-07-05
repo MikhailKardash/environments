@@ -89,7 +89,6 @@ jobs:
     steps:
       - checkout
       - install-docker
-      - run: pip install --upgrade pip
       - when:
           condition: <<parameters.use-nvidia-runtime>>
           steps:
