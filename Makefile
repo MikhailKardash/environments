@@ -338,7 +338,7 @@ build-tf2-gpu: build-gpu-cuda-117-base
 		--build-arg TORCH_TB_PROFILER_PIP="$(TORCH_TB_PROFILER_PIP)" \
 		--build-arg TORCH_CUDA_ARCH_LIST="3.7;6.0;6.1;6.2;7.0;7.5;8.0" \
 		--build-arg APEX_GIT="$(APEX_GIT_URL)" \
-		--build-arg HOROVOD_PIP="horovod==0.27.0" \
+		--build-arg HOROVOD_PIP="horovod==0.28.1" \
 		--build-arg WITH_AWS_TRACE="$(WITH_AWS_TRACE)" \
 		--build-arg INTERNAL_AWS_DS="$(INTERNAL_AWS_DS)" \
 		--build-arg INTERNAL_AWS_PATH="$(INTERNAL_AWS_PATH)" \
