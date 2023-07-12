@@ -174,18 +174,18 @@ build-pytorch10-tf27-rocm50:
 		-t $(DOCKERHUB_REGISTRY)/$(ROCM50_TORCH_TF_ENVIRONMENT_NAME)-$(VERSION) \
 		.
 
-DEEPSPEED_VERSION := 0.8.3
-export GPU_DEEPSPEED_ENVIRONMENT_NAME := $(CUDA_113_PREFIX)pytorch-1.10-deepspeed-$(DEEPSPEED_VERSION)$(GPU_SUFFIX)
-export GPU_GPT_NEOX_DEEPSPEED_ENVIRONMENT_NAME := $(CUDA_113_PREFIX)pytorch-1.10-gpt-neox-deepspeed$(GPU_SUFFIX)
-export TORCH_PIP_DEEPSPEED_GPU := torch==1.10.2+cu113 torchvision==0.11.3+cu113 torchaudio==0.10.2+cu113 -f https://download.pytorch.org/whl/cu113/torch_stable.html
+DEEPSPEED_VERSION := 0.9.5
+export GPU_DEEPSPEED_ENVIRONMENT_NAME := $(CUDA_117_PREFIX)pytorch-2.0-deepspeed-$(DEEPSPEED_VERSION)$(GPU_SUFFIX)
+export GPU_GPT_NEOX_DEEPSPEED_ENVIRONMENT_NAME := $(CUDA_117_PREFIX)pytorch-2.0-gpt-neox-deepspeed$(GPU_SUFFIX)
+export TORCH_PIP_DEEPSPEED_GPU := torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu117
 export TORCH_TB_PROFILER_PIP := torch-tb-profiler==0.4.1
-export APEX_DEEPSPEED_GIT_URL = https://github.com/determined-ai/apex.git@3caf0f40c92e92b40051d3afff8568a24b8be28d
+export APEX_DEEPSPEED_GIT_URL = https://github.com/determined-ai/apex.git@85e9eddece9d4ac72b48c2407f8162f2173e1bf4
 
 # This builds deepspeed environment off of upstream microsoft/DeepSpeed.
 .PHONY: build-deepspeed-gpu
-build-deepspeed-gpu: build-gpu-cuda-113-base
+build-deepspeed-gpu: build-gpu-cuda-117-base
 	docker build -f Dockerfile-default-gpu \
-		--build-arg BASE_IMAGE="$(DOCKERHUB_REGISTRY)/$(GPU_CUDA_113_BASE_NAME)-$(SHORT_GIT_HASH)" \
+		--build-arg BASE_IMAGE="$(DOCKERHUB_REGISTRY)/$(GPU_CUDA_117_BASE_NAME)-$(SHORT_GIT_HASH)" \
 		--build-arg TORCH_PIP="$(TORCH_PIP_DEEPSPEED_GPU)" \
 		--build-arg TORCH_TB_PROFILER_PIP="$(TORCH_TB_PROFILER_PIP)" \
 		--build-arg TORCH_CUDA_ARCH_LIST="6.0;6.1;6.2;7.0;7.5;8.0" \
@@ -201,9 +201,9 @@ build-deepspeed-gpu: build-gpu-cuda-113-base
 # This builds deepspeed environment off of a patched version of EleutherAI's fork of DeepSpeed
 # that we need for gpt-neox support.
 .PHONY: build-gpt-neox-deepspeed-gpu
-build-gpt-neox-deepspeed-gpu: build-gpu-cuda-113-base
+build-gpt-neox-deepspeed-gpu: build-gpu-cuda-117-base
 	docker build -f Dockerfile-default-gpu \
-		--build-arg BASE_IMAGE="$(DOCKERHUB_REGISTRY)/$(GPU_CUDA_113_BASE_NAME)-$(SHORT_GIT_HASH)" \
+		--build-arg BASE_IMAGE="$(DOCKERHUB_REGISTRY)/$(GPU_CUDA_117_BASE_NAME)-$(SHORT_GIT_HASH)" \
 		--build-arg TORCH_PIP="$(TORCH_PIP_DEEPSPEED_GPU)" \
 		--build-arg TORCH_TB_PROFILER_PIP="$(TORCH_TB_PROFILER_PIP)" \
 		--build-arg TORCH_CUDA_ARCH_LIST="6.0;6.1;6.2;7.0;7.5;8.0" \
@@ -336,7 +336,7 @@ build-tf2-gpu: build-gpu-cuda-117-base
 		--build-arg TENSORFLOW_PIP="$(TF2_PIP_GPU)" \
 		--build-arg TORCH_PIP="$(TORCH_PIP_GPU)" \
 		--build-arg TORCH_TB_PROFILER_PIP="$(TORCH_TB_PROFILER_PIP)" \
-		--build-arg TORCH_CUDA_ARCH_LIST="3.7;6.0;6.1;6.2;7.0;7.5;8.0" \
+		--build-arg TORCH_CUDA_ARCH_LIST="6.0;6.1;6.2;7.0;7.5;8.0" \
 		--build-arg APEX_GIT="$(APEX_GIT_URL)" \
 		--build-arg HOROVOD_PIP="horovod==0.28.1" \
 		--build-arg WITH_AWS_TRACE="$(WITH_AWS_TRACE)" \
@@ -361,7 +361,7 @@ build-pt-gpu: build-gpu-cuda-117-base
 		--build-arg BASE_IMAGE="$(DOCKERHUB_REGISTRY)/$(GPU_CUDA_117_BASE_NAME)-$(SHORT_GIT_HASH)" \
 		--build-arg TORCH_PIP="$(TORCH_PIP_GPU)" \
 		--build-arg TORCH_TB_PROFILER_PIP="$(TORCH_TB_PROFILER_PIP)" \
-		--build-arg TORCH_CUDA_ARCH_LIST="3.7;6.0;6.1;6.2;7.0;7.5;8.0" \
+		--build-arg TORCH_CUDA_ARCH_LIST="6.0;6.1;6.2;7.0;7.5;8.0" \
 		--build-arg APEX_GIT="$(APEX_GIT_URL)" \
 		--build-arg HOROVOD_PIP="horovod==0.24.2" \
 		--build-arg "$(NCCL_BUILD_ARG)" \
