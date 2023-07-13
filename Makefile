@@ -337,7 +337,7 @@ build-tf2-gpu: build-gpu-cuda-117-base
 		--build-arg TENSORFLOW_PIP="$(TF2_PIP_GPU)" \
 		--build-arg TORCH_PIP="$(TORCH_PIP_GPU)" \
 		--build-arg TORCH_TB_PROFILER_PIP="$(TORCH_TB_PROFILER_PIP)" \
-		--build-arg TORCH_CUDA_ARCH_LIST="6.0;6.1;6.2;7.0;7.5;8.0" \
+		--build-arg TORCH_CUDA_ARCH_LIST="3.7;6.0;6.1;6.2;7.0;7.5;8.0" \
 		--build-arg APEX_GIT="$(APEX_GIT_URL)" \
 		--build-arg HOROVOD_PIP="horovod==0.28.1" \
 		--build-arg WITH_AWS_TRACE="$(WITH_AWS_TRACE)" \
@@ -362,7 +362,7 @@ build-pt-gpu: build-gpu-cuda-117-base
 		--build-arg BASE_IMAGE="$(DOCKERHUB_REGISTRY)/$(GPU_CUDA_117_BASE_NAME)-$(SHORT_GIT_HASH)" \
 		--build-arg TORCH_PIP="$(TORCH_PIP_GPU)" \
 		--build-arg TORCH_TB_PROFILER_PIP="$(TORCH_TB_PROFILER_PIP)" \
-		--build-arg TORCH_CUDA_ARCH_LIST="6.0;6.1;6.2;7.0;7.5;8.0" \
+		--build-arg TORCH_CUDA_ARCH_LIST="3.7;6.0;6.1;6.2;7.0;7.5;8.0" \
 		--build-arg APEX_GIT="$(APEX_GIT_URL)" \
 		--build-arg HOROVOD_PIP="horovod==0.24.2" \
 		--build-arg "$(NCCL_BUILD_ARG)" \
